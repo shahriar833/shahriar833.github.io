@@ -1,0 +1,1230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Md Shahriar Kabir - Flutter Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              heading: ["Space Grotesk", "sans-serif"],
+              body: ["DM Sans", "sans-serif"],
+            },
+            colors: {
+              black: "#0a0a0a",
+              "black-light": "#1a1a1a",
+              "black-lighter": "#2a2a2a",
+              white: "#ffffff",
+              "white-off": "#f5f5f5",
+              tomato: "#ff6347",
+              "tomato-light": "#ff7f66",
+              "tomato-dark": "#e5533d",
+              gray: "#6b6b6b",
+              "gray-light": "#9b9b9b",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "DM Sans", sans-serif;
+        background-color: #0a0a0a;
+        color: #ffffff;
+      }
+
+      .font-heading {
+        font-family: "Space Grotesk", sans-serif;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes fadeInRight {
+        from {
+          opacity: 0;
+          transform: translateX(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(255, 99, 71, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(255, 99, 71, 0.6);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-15px);
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .animate-fade-in-left {
+        animation: fadeInLeft 0.8s ease-out forwards;
+      }
+
+      .animate-fade-in-right {
+        animation: fadeInRight 0.8s ease-out forwards;
+      }
+
+      .animate-scale-in {
+        animation: scaleIn 0.6s ease-out forwards;
+      }
+
+      .animate-pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+      .delay-500 {
+        animation-delay: 0.5s;
+      }
+
+      .hover-tomato {
+        transition: all 0.3s ease;
+      }
+
+      .hover-tomato:hover {
+        color: #ff6347;
+      }
+
+      .btn-tomato {
+        background: #ff6347;
+        transition: all 0.3s ease;
+      }
+
+      .btn-tomato:hover {
+        background: #ff7f66;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 99, 71, 0.4);
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(255, 99, 71, 0.15);
+      }
+
+      .card-hover:hover .card-icon {
+        color: #ff6347;
+        transform: scale(1.1);
+      }
+
+      .card-icon {
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag {
+        transition: all 0.3s ease;
+      }
+
+      .skill-tag:hover {
+        background: #ff6347;
+        color: #0a0a0a;
+        transform: translateY(-2px);
+      }
+
+      .link-hover {
+        position: relative;
+      }
+
+      .link-hover::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ff6347;
+        transition: width 0.3s ease;
+      }
+
+      .link-hover:hover::after {
+        width: 100%;
+      }
+
+      .grid-bg {
+        background-image:
+          linear-gradient(rgba(255, 99, 71, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 99, 71, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #ff6347, #ff7f66);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .progress-bar {
+        transition: width 1s ease-out;
+      }
+    </style>
+  </head>
+  <body
+    class="grid-bg"
+    x-data="{ loaded: false }"
+    x-init="setTimeout(() => loaded = true, 100)"
+  >
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 glass"
+      x-data="{ mobileMenu: false, scrollY: 0 }"
+      @scroll.window="scrollY = window.scrollY"
+      x-show="loaded"
+      x-transition:enter="animate-fade-in-up"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#home" class="font-heading text-2xl font-bold">
+          <span class="text-tomato">Shahriar</span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex gap-8 items-center">
+          <a href="#home" class="text-white hover-tomato font-medium link-hover"
+            >Home</a
+          >
+          <a
+            href="#about"
+            class="text-white hover-tomato font-medium link-hover"
+            >About</a
+          >
+          <a
+            href="#education"
+            class="text-white hover-tomato font-medium link-hover"
+            >Education</a
+          >
+          <a
+            href="#experience"
+            class="text-white hover-tomato font-medium link-hover"
+            >Experience</a
+          >
+          <a
+            href="#projects"
+            class="text-white hover-tomato font-medium link-hover"
+            >Projects</a
+          >
+          <a
+            href="#skills"
+            class="text-white hover-tomato font-medium link-hover"
+            >Skills</a
+          >
+          <a
+            href="#contact"
+            class="btn-tomato px-5 py-2 rounded-full font-semibold text-white"
+            >Contact</a
+          >
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button @click="mobileMenu = !mobileMenu" class="md:hidden text-white">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              x-show="!mobileMenu"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+            <path
+              x-show="mobileMenu"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        x-show="mobileMenu"
+        x-transition
+        class="md:hidden glass border-t border-white/10"
+      >
+        <div class="flex flex-col p-4 gap-4">
+          <a
+            @click="mobileMenu = false"
+            href="#home"
+            class="text-white hover-tomato"
+            >Home</a
+          >
+          <a
+            @click="mobileMenu = false"
+            href="#about"
+            class="text-white hover-tomato"
+            >About</a
+          >
+          <a
+            @click="mobileMenu = false"
+            href="#education"
+            class="text-white hover-tomato"
+            >Education</a
+          >
+          <a
+            @click="mobileMenu = false"
+            href="#experience"
+            class="text-white hover-tomato"
+            >Experience</a
+          >
+          <a
+            @click="mobileMenu = false"
+            href="#projects"
+            class="text-white hover-tomato"
+            >Projects</a
+          >
+          <a
+            @click="mobileMenu = false"
+            href="#skills"
+            class="text-white hover-tomato"
+            >Skills</a
+          >
+          <a
+            @click="mobileMenu = false"
+            href="#contact"
+            class="text-tomato font-semibold"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20"
+    >
+      <!-- Background Elements -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div
+          class="absolute top-1/4 left-1/4 w-96 h-96 bg-tomato/5 rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-tomato/5 rounded-full blur-3xl"
+        ></div>
+      </div>
+
+      <div
+        class="relative z-10 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Content -->
+        <div x-show="loaded" x-transition:enter="animate-fade-in-left">
+          <div class="inline-block px-4 py-2 glass rounded-full mb-6">
+            <span class="text-tomato text-sm font-medium"
+              >● Available for Work</span
+            >
+          </div>
+
+          <h1
+            class="font-heading text-4xl md:text-6xl font-bold mb-4 leading-tight"
+          >
+            Hi, I'm <span class="gradient-text">Md. Shahriar Kabir</span>
+          </h1>
+
+          <p class="text-xl md:text-2xl text-gray-light mb-2">
+            Flutter Developer
+          </p>
+
+          <p class="text-gray mb-8 max-w-lg">
+            Passionate about building beautiful, performant mobile applications.
+            Currently focused on Flutter development and learning new
+            technologies.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mb-8">
+            <a
+              href="#projects"
+              class="btn-tomato px-8 py-3 rounded-full font-semibold text-white"
+            >
+              View Projects
+            </a>
+            <a
+              href="#contact"
+              class="px-8 py-3 border-2 border-white text-white rounded-full font-semibold hover:bg-white hover:text-black transition-all"
+            >
+              Contact Me
+            </a>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="flex gap-8">
+            <div>
+              <p class="font-heading text-3xl font-bold text-tomato">4+</p>
+              <p class="text-gray text-sm">Projects</p>
+            </div>
+            <div>
+              <p class="font-heading text-3xl font-bold text-tomato">6mo</p>
+              <p class="text-gray text-sm">Internship</p>
+            </div>
+            <div>
+              <p class="font-heading text-3xl font-bold text-tomato">1+</p>
+              <p class="text-gray text-sm">Year Exp</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Content - Profile Card -->
+        <div
+          x-show="loaded"
+          x-transition:enter="animate-fade-in-right"
+          x-transition:enter-delay="200"
+          class="flex justify-center"
+        >
+          <div class="relative">
+            <!-- Decorative rings -->
+            <div
+              class="absolute inset-0 border-2 border-tomato rounded-3xl animate-pulse-glow"
+            ></div>
+            <div
+              class="absolute -inset-4 border border-white/10 rounded-3xl"
+            ></div>
+
+            <!-- <img src="Capture.PNG" alt="A beautiful sunset"> -->
+            <div
+              class="w-72 h-72 md:w-80 md:h-80 bg-black-light rounded-3xl flex items-center justify-center relative overflow-hidden"
+            >
+              <div class="text-center">
+                <div
+                  class="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-tomato to-tomato-light rounded-full flex items-center justify-center"
+                >
+                  <img
+                    class="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-tomato to-tomato-light rounded-full flex items-center justify-center"
+                    src="../Desktop/profile.jfif"
+                    alt=""
+                  />
+                </div>
+                <p class="font-heading text-lg font-semibold">
+                  Md. Shahriar Kabir
+                </p>
+                <p class="text-gray text-sm">Flutter Developer</p>
+              </div>
+
+              <!-- Floating badges -->
+              <div
+                class="absolute top-4 right-4 bg-tomato text-white text-xs px-3 py-1 rounded-full"
+              >
+                Open to Work
+              </div>
+            </div>
+
+            <!-- Floating elements -->
+            <div
+              class="absolute -left-8 top-1/3 glass px-4 py-2 rounded-lg animate-float"
+            >
+              <p class="text-sm text-gray-light">Flutter</p>
+            </div>
+            <div
+              class="absolute -right-6 bottom-1/3 glass px-4 py-2 rounded-lg animate-float"
+              style="animation-delay: 1s"
+            >
+              <p class="text-sm text-gray-light">Dart</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+        <div
+          class="w-6 h-10 border-2 border-gray rounded-full flex justify-center pt-2"
+        >
+          <div class="w-1 h-3 bg-tomato rounded-full animate-pulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section
+      id="about"
+      class="py-24 bg-black-light"
+      x-data="{ shown: false }"
+      x-intersect.threshold.30="shown = true"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div x-show="shown" x-transition:enter="animate-fade-in-up">
+          <p class="text-tomato font-medium mb-2">// ABOUT ME</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-8">
+            Building Apps with <span class="gradient-text">Passion</span>
+          </h2>
+        </div>
+
+        <div
+          class="grid md:grid-cols-2 gap-12"
+          x-show="shown"
+          x-transition:enter="animate-fade-in-up"
+          x-transition:enter-delay="200"
+        >
+          <div>
+            <p class="text-gray-light text-lg leading-relaxed mb-6">
+              I am a CSE graduate with a passion for mobile application
+              development. Recently, I've been focusing on
+              <span class="text-tomato">Flutter</span> to build beautiful,
+              cross-platform applications.
+            </p>
+            <p class="text-gray-light text-lg leading-relaxed mb-6">
+              My journey in tech started with C and C++ programming, which gave
+              me a strong foundation in programming concepts. I then explored
+              Dart and Flutter, and I'm excited about the possibilities in
+              mobile development.
+            </p>
+            <p class="text-gray-light text-lg leading-relaxed">
+              I completed a 6-month internship at Ispahani Islamia Eye Institute
+              and Hospital in the IT department, where I gained practical
+              experience in real-world IT operations.
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <!-- Goal Card -->
+            <div class="glass p-6 rounded-xl card-hover">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 bg-tomato/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-rocket text-tomato text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold text-lg">
+                    Future Goal
+                  </h3>
+                  <p class="text-gray">App Development with Flutter</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Current Focus -->
+            <div class="glass p-6 rounded-xl card-hover">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 bg-tomato/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-code text-tomato text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold text-lg">
+                    Currently Learning
+                  </h3>
+                  <p class="text-gray">Flutter & Dart</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="glass p-6 rounded-xl card-hover">
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-12 h-12 bg-tomato/20 rounded-lg flex items-center justify-center"
+                >
+                  <i class="fas fa-map-marker-alt text-tomato text-xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-semibold text-lg">Location</h3>
+                  <p class="text-gray">Bangladesh</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section
+      id="education"
+      class="py-24"
+      x-data="{ shown: false }"
+      x-intersect.threshold.30="shown = true"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div x-show="shown" x-transition:enter="animate-fade-in-up">
+          <p class="text-tomato font-medium mb-2">// EDUCATION</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12">
+            Academic <span class="gradient-text">Background</span>
+          </h2>
+        </div>
+
+        <div class="space-y-6">
+          <!-- University -->
+          <div
+            class="glass p-6 md:p-8 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-left"
+          >
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-16 h-16 bg-tomato/20 rounded-xl flex items-center justify-center"
+                >
+                  <i class="fas fa-university text-tomato text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-xl">
+                    B.Sc in Computer Science & Engineering
+                  </h3>
+                  <p class="text-gray-light">Gono Bishwabidyalay</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-tomato font-bold text-2xl">2.90</p>
+                <p class="text-gray text-sm">CGPA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- HSC -->
+          <div
+            class="glass p-6 md:p-8 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-left"
+            x-transition:enter-delay="100"
+          >
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-16 h-16 bg-tomato/20 rounded-xl flex items-center justify-center"
+                >
+                  <i class="fas fa-school text-tomato text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-xl">HSC in Science</h3>
+                  <p class="text-gray-light">
+                    Sherwood Pvt. Int. School and College
+                  </p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-tomato font-bold text-2xl">4.25</p>
+                <p class="text-gray text-sm">GPA</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- SSC -->
+          <div
+            class="glass p-6 md:p-8 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-left"
+            x-transition:enter-delay="200"
+          >
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4"
+            >
+              <div class="flex items-center gap-4">
+                <div
+                  class="w-16 h-16 bg-tomato/20 rounded-xl flex items-center justify-center"
+                >
+                  <i class="fas fa-graduation-cap text-tomato text-2xl"></i>
+                </div>
+                <div>
+                  <h3 class="font-heading font-bold text-xl">SSC in Science</h3>
+                  <p class="text-gray-light">Baliati I.C. High School</p>
+                </div>
+              </div>
+              <div class="text-right">
+                <p class="text-tomato font-bold text-2xl">4.72</p>
+                <p class="text-gray text-sm">GPA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section
+      id="experience"
+      class="py-24 bg-black-light"
+      x-data="{ shown: false }"
+      x-intersect.threshold.30="shown = true"
+    >
+      <div class="max-w-4xl mx-auto px-6">
+        <div x-show="shown" x-transition:enter="animate-fade-in-up">
+          <p class="text-tomato font-medium mb-2">// EXPERIENCE</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12">
+            Professional <span class="gradient-text">Journey</span>
+          </h2>
+        </div>
+
+        <div
+          class="relative"
+          x-show="shown"
+          x-transition:enter="animate-fade-in-up"
+          x-transition:enter-delay="200"
+        >
+          <!-- Timeline line -->
+          <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-white/10"></div>
+
+          <!-- Timeline item -->
+          <div class="relative pl-20 pb-12">
+            <div
+              class="absolute left-6 w-5 h-5 bg-tomato rounded-full border-4 border-black-light"
+            ></div>
+            <div class="glass p-6 rounded-xl card-hover">
+              <span
+                class="inline-block px-3 py-1 bg-tomato/20 text-tomato text-sm rounded-full mb-3"
+              >
+                6 Months
+              </span>
+              <h3 class="font-heading font-bold text-xl mb-1">IT Intern</h3>
+              <p class="text-tomato font-medium mb-2">
+                Ispahani Islamia Eye Institute and Hospital
+              </p>
+              <p class="text-gray-light">
+                Gained practical experience in IT operations, system
+                maintenance, and healthcare technology solutions. Worked on
+                various IT support tasks and learned about hospital information
+                systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="py-24"
+      x-data="{ shown: false }"
+      x-intersect.threshold.20="shown = true"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div x-show="shown" x-transition:enter="animate-fade-in-up">
+          <p class="text-tomato font-medium mb-2">// PROJECTS</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12">
+            Featured <span class="gradient-text">Work</span>
+          </h2>
+        </div>
+
+        <!-- Main Project -->
+        <div
+          class="glass rounded-2xl overflow-hidden mb-12 card-hover"
+          x-show="shown"
+          x-transition:enter="animate-scale-in"
+        >
+          <div class="grid md:grid-cols-2">
+            <div
+              class="h-64 md:h-auto bg-gradient-to-br from-tomato/20 to-black-light flex items-center justify-center"
+            >
+              <i class="fas fa-shopping-cart text-7xl text-tomato"></i>
+            </div>
+            <div class="p-8">
+              <span
+                class="inline-block px-3 py-1 bg-tomato text-white text-xs rounded-full mb-4"
+                >Final Year Project</span
+              >
+              <h3 class="font-heading text-2xl font-bold mb-4">
+                E-Commerce Website
+              </h3>
+              <p class="text-gray-light mb-6">
+                A full-featured e-commerce platform with user authentication,
+                product management, shopping cart, and order processing. Built
+                with modern web technologies.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-3 py-1 bg-white/10 text-white text-sm rounded-full"
+                  >HTML</span
+                >
+                <span
+                  class="px-3 py-1 bg-white/10 text-white text-sm rounded-full"
+                  >CSS</span
+                >
+                <span
+                  class="px-3 py-1 bg-white/10 text-white text-sm rounded-full"
+                  >JavaScript</span
+                >
+                <span
+                  class="px-3 py-1 bg-white/10 text-white text-sm rounded-full"
+                  >MongoDB</span
+                >
+                <span
+                  class="px-3 py-1 bg-white/10 text-white text-sm rounded-full"
+                  >PHP</span
+                >
+              </div>
+              <a href="#" class="text-tomato font-semibold hover:underline"
+                >View Project →</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Projects Grid -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Flutter App (Placeholder) -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-up"
+            x-transition:enter-delay="100"
+          >
+            <div
+              class="w-14 h-14 bg-tomato/20 rounded-xl flex items-center justify-center mb-4 card-icon"
+            >
+              <i class="fab fa-flutter text-2xl text-tomato"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg mb-2">Flutter App</h3>
+            <p class="text-gray text-sm mb-4">
+              Mobile application project (Coming Soon)
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-white/5 text-gray text-xs rounded-full"
+                >Flutter</span
+              >
+              <span class="px-2 py-1 bg-white/5 text-gray text-xs rounded-full"
+                >Dart</span
+              >
+            </div>
+          </div>
+
+          <!-- C++ Project -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-up"
+            x-transition:enter-delay="200"
+          >
+            <div
+              class="w-14 h-14 bg-tomato/20 rounded-xl flex items-center justify-center mb-4 card-icon"
+            >
+              <i class="fas fa-code text-2xl text-tomato"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg mb-2">C++ Projects</h3>
+            <p class="text-gray text-sm mb-4">
+              Various data structure & algorithm implementations
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-white/5 text-gray text-xs rounded-full"
+                >C++</span
+              >
+              <span class="px-2 py-1 bg-white/5 text-gray text-xs rounded-full"
+                >OOP</span
+              >
+            </div>
+          </div>
+
+          <!-- More Coming -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-up"
+            x-transition:enter-delay="300"
+          >
+            <div
+              class="w-14 h-14 bg-tomato/20 rounded-xl flex items-center justify-center mb-4 card-icon"
+            >
+              <i class="fas fa-plus text-2xl text-tomato"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg mb-2">More Coming</h3>
+            <p class="text-gray text-sm mb-4">
+              Currently learning Flutter to build more projects
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-2 py-1 bg-white/5 text-gray text-xs rounded-full"
+                >Learning</span
+              >
+              <span class="px-2 py-1 bg-white/5 text-gray text-xs rounded-full"
+                >Flutter</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section
+      id="skills"
+      class="py-24 bg-black-light"
+      x-data="{ shown: false }"
+      x-intersect.threshold.20="shown = true"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <div x-show="shown" x-transition:enter="animate-fade-in-up">
+          <p class="text-tomato font-medium mb-2">// SKILLS</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12">
+            Technical <span class="gradient-text">Skills</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Programming Languages -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-left"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-tomato/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-laptop-code text-tomato"></i>
+              </div>
+              <h3 class="font-heading font-bold">Programming</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >C</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >C++</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Dart</span
+              >
+            </div>
+          </div>
+
+          <!-- Flutter -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-left"
+            x-transition:enter-delay="100"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-tomato/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fab fa-flutter text-tomato"></i>
+              </div>
+              <h3 class="font-heading font-bold">Flutter</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Flutter</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Dart</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Widgets</span
+              >
+            </div>
+          </div>
+
+          <!-- Web Development -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-left"
+            x-transition:enter-delay="200"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-tomato/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-globe text-tomato"></i>
+              </div>
+              <h3 class="font-heading font-bold">Web</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >HTML</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >CSS</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >JavaScript</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >PHP</span
+              >
+            </div>
+          </div>
+
+          <!-- Databases -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-right"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-tomato/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-database text-tomato"></i>
+              </div>
+              <h3 class="font-heading font-bold">Databases</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >MongoDB</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >MySQL</span
+              >
+            </div>
+          </div>
+
+          <!-- Tools -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-right"
+            x-transition:enter-delay="100"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-tomato/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-tools text-tomato"></i>
+              </div>
+              <h3 class="font-heading font-bold">Tools</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Git</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >VS Code</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Android Studio</span
+              >
+            </div>
+          </div>
+
+          <!-- Learning -->
+          <div
+            class="glass p-6 rounded-xl card-hover"
+            x-show="shown"
+            x-transition:enter="animate-fade-in-right"
+            x-transition:enter-delay="200"
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-10 h-10 bg-tomato/20 rounded-lg flex items-center justify-center"
+              >
+                <i class="fas fa-book text-tomato"></i>
+              </div>
+              <h3 class="font-heading font-bold">Learning</h3>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Flutter</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >Firebase</span
+              >
+              <span class="skill-tag px-4 py-2 bg-white/5 rounded-lg text-sm"
+                >REST API</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section
+      id="contact"
+      class="py-24"
+      x-data="{ shown: false }"
+      x-intersect.threshold.30="shown = true"
+    >
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <div x-show="shown" x-transition:enter="animate-fade-in-up">
+          <p class="text-tomato font-medium mb-2">// CONTACT</p>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold mb-6">
+            Let's <span class="gradient-text">Connect</span>
+          </h2>
+          <p class="text-gray-light text-lg mb-12 max-w-xl mx-auto">
+            Feel free to reach out for collaborations, projects, or just to say
+            hello!
+          </p>
+        </div>
+
+        <div
+          class="grid md:grid-cols-2 gap-6 mb-12"
+          x-show="shown"
+          x-transition:enter="animate-scale-in"
+          x-transition:enter-delay="200"
+        >
+          <!-- Email -->
+          <a
+            href="mailto:shahriarkabir833@gmail.com"
+            class="glass p-6 rounded-xl card-hover text-center block"
+          >
+            <div
+              class="w-14 h-14 bg-tomato/20 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-envelope text-2xl text-tomato"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg mb-1">Email</h3>
+            <p class="text-gray text-sm">shahriarkabir833@gmail.com</p>
+          </a>
+
+          <!-- Phone -->
+          <a
+            href="tel:+8801700773424"
+            class="glass p-6 rounded-xl card-hover text-center block"
+          >
+            <div
+              class="w-14 h-14 bg-tomato/20 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-phone text-2xl text-tomato"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg mb-1">Phone</h3>
+            <p class="text-gray text-sm">+880 1700 773424</p>
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div
+          class="flex justify-center gap-6"
+          x-show="shown"
+          x-transition:enter="animate-fade-in-up"
+          x-transition:enter-delay="300"
+        >
+          <a
+            href="mailto:shahriarkabir833@gmail.com"
+            class="w-14 h-14 glass rounded-full flex items-center justify-center hover-tomato"
+          >
+            <i class="fas fa-envelope text-xl"></i>
+          </a>
+          <a
+            href="#"
+            class="w-14 h-14 glass rounded-full flex items-center justify-center hover-tomato"
+          >
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/shahriar833"
+            target="_blank"
+            class="w-14 h-14 glass rounded-full flex items-center justify-center hover-tomato"
+          >
+            <i class="fab fa-linkedin-in text-xl"></i>
+          </a>
+          <a
+            href="tel:+8801700773424"
+            class="w-14 h-14 glass rounded-full flex items-center justify-center hover-tomato"
+          >
+            <i class="fas fa-phone text-xl"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black-light py-8">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <p class="font-heading text-lg mb-2">
+          <span class="text-tomato">Md Shahriar Kabir</span>
+        </p>
+        <p class="text-gray text-sm">© 2026 All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </body>
+</html>
